@@ -8,6 +8,8 @@ SoundFile file2;
 SoundFile file3;
 SoundFile file4;
 SoundFile file5;
+SoundFile file6;
+SoundFile file7;
 
 ArrayList<Mover> flock;
 int flockSize = int(random(10, 20));
@@ -25,6 +27,8 @@ void setup () {
             file3 = new SoundFile(this, "pew3.mp3");
             file4 = new SoundFile(this, "boom1.mp3");
             file5 = new SoundFile(this, "boom2.mp3");
+            file6 = new SoundFile(this, "death.mp3");
+            file7 = new SoundFile(this, "respawn.mp3");
   //fullScreen(P2D);
   size (800, 600);
   currentTime = millis();
@@ -114,6 +118,7 @@ void update(int delta) {
         if(v.isColliding(m)){
           int xx = int(random(0, width));
           int yy = int(random(0, height));
+          file6.play();
           while(!v.goodRespawn(m, xx, yy)){
             v.location.x = xx;
             v.location.y = yy;
@@ -183,6 +188,7 @@ void mouseClicked(){
 
     Mover m = new Mover(new PVector(random(0, width), random(0, height)), new PVector(random (-2, 2), random(-2, 2)));
     m.fillColor = color(random(255), random(255), random(255));
+    file7.play();
     flock.add(m);
 
 }

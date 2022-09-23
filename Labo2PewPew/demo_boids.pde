@@ -2,6 +2,13 @@ int currentTime;
 int previousTime;
 int deltaTime;
 
+import processing.sound.*;
+SoundFile file1;
+SoundFile file2;
+SoundFile file3;
+SoundFile file4;
+SoundFile file5;
+
 ArrayList<Mover> flock;
 int flockSize = int(random(10, 20));
 
@@ -12,6 +19,12 @@ Vaisseau v;
 boolean debug = false;
 
 void setup () {
+  
+            file1 = new SoundFile(this, "pew1.mp3");
+            file2 = new SoundFile(this, "pew2.mp3");
+            file3 = new SoundFile(this, "pew3.mp3");
+            file4 = new SoundFile(this, "boom1.mp3");
+            file5 = new SoundFile(this, "boom2.mp3");
   //fullScreen(P2D);
   size (800, 600);
   currentTime = millis();
@@ -70,6 +83,16 @@ void update(int delta) {
         if(m.isColliding(pp) && pp.isVisible == true){
           //m.location.x = width/2;
           //m.location.y = height/2;
+            int rand = int(random(1,2));
+            
+            if(rand == 1){
+            file4.play();
+            }
+            else if(rand == 2){
+
+            file5.play();
+            
+            }
           toremove.add(m);
           pp.isVisible = false;
         }
@@ -171,6 +194,26 @@ void keyReleased() {
         break;
         case ' ':
           if(peutTirer == true){
+            
+            int rand = int(random(1,3));
+            
+            if(rand == 1){
+            
+            file1.play();
+            }
+            else if(rand == 2){
+            
+            file2.play();
+            
+            }
+            else{
+            
+            file3.play();
+            
+            }
+            
+            
+            
             Projectile d = new Projectile();
             d.location.x = v.location.x;
             d.location.y = v.location.y;
